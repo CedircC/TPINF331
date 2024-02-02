@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet"
+      href="{% static 'css/stylesheet.css' %}"> {% endcomment %}
+
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet">
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.snow.css' %}"
+      rel="stylesheet">
+    <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}"
+      rel="stylesheet">
+    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
+      rel="stylesheet">
+    <link href="{% static 'assets/vendor/simple-datatables/style.css' %}"
+      rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <title>Register</title>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="pt-4 pb-2">
+            <h5 class="card-title text-center pb-0 fs-4">Student Registration</h5>
+            <p class="text-center small">Enter your personal details to create
+              account</p>
+          </div>
+
+          <!-- Floating Labels Form -->
+          <form class="row g-3" method="POST" action="{% url 'student'%}">
+            {% csrf_token %}
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="floatingName"
+                  placeholder="Your Name" name="nom">
+                <label for="floatingName">Your Name</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input name="matricule" class="form-control" id="floatingName"
+                  placeholder="Your Name">
+                <label for="floatingName">Matricule</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="floatingEmail"
+                  placeholder="Your Email" name="email" autocomplete="off">
+                <label for="floatingEmail">Your Email</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="password" class="form-control"
+                  id="floatingPassword" placeholder="Password" name="password" autocomplete="off">
+                <label for="floatingPassword">Password</label>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" name="date">
+              </div>
+            </div>
+
+            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+            <div class="col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="genre"
+                  id="gridRadios1" value="homme" checked>
+                <label class="fo/home/mica/Téléchargements/NiceAdmin/charts-apexcharts.htmlrm-check-label" for="gridRadios1">
+                  Male
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="genre"
+                  id="gridRadios2" value="femme">
+                <label class="form-check-label" for="gridRadios2">
+                  Female
+                </label>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-floating mb-3">
+                <select class="form-select" id="floatingSelect"
+                  aria-label="State" name="niveau">
+                  <option selected value="l1">L1</option>
+                  <option value="l2">L2</option>
+                  <option value="l3">L3</option>
+                </select>
+                <label for="floatingSelect">Level</label>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-12">
+              <p class="small mb-0">Already have account? <a
+                  href="{% url 'login_student' %}">Login</a></p>
+            </div>
+          </form><!-- End floating Labels Form -->
+
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

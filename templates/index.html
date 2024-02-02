@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Accueil</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  
+  <link href="{% static 'assets1/css/variables.css' %}" rel="stylesheet">
+  <link href="{% static 'assets1/css/main.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="Net.css">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url 'Acceuil' %}" class="logo d-flex align-items-center">
+          <img src="{% static 'assets/img/logo.png' %}" alt="" style="width: 25px;">
+          <span class="d-none d-lg-block">AtSchool</span>
+        </a>
+      </div><!-- End Logo -->
+  </header><!-- End Header -->
+
+  <section id="hero-static" class="hero-static d-flex align-items-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
+      <h2>Welcome to <span>AtSchool</span></h2>
+      <p>The grade management app for students and teachers.</p>
+      <div class="d-flex">
+        <a href="{% url 'choose_account' %}" class="btn-get-started scrollto">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main" class="main">
+    <section id="featured-services" class="featured-services">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-clock"></i></div>
+              <h4><a href="" class="stretched-link">View your notes</a></h4>
+              <p>See the evolution of your notes in real time</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-file-earmark"></i></div>
+              <h4><a href="" class="stretched-link">Submit your requests</a></h4>
+              <p>Write and submit your requests very quickly</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-download"></i></div>
+              <h4><a href="" class="stretched-link">Download all your notes</a></h4>
+              <p>Get your notes faster by uploading them</p>
+            </div>
+          </div><!-- End Service Item -->
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</body>
+
+</html>

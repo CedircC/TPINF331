@@ -1,0 +1,463 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/apexcharts' %}"></script>
+
+    <title>student Working</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js' %}"></script>
+    <script src="{% static 'ahttps://cdn.jsdelivr.net/npm/chart.js' %}"></script>
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet" />
+    <link href="{% static 'a/home/mica/Bureau/FinalProject/static/css/stylesheet.css' %}" rel="stylesheet" />
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/jspdf@2.4.0/dist/jspdf.umd.min.js' %}"></script>
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="index.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="{% static 'assets/img/logo.png' %}" alt="" />
+          <span class="d-none d-lg-block">AtSchool</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+      </div>
+      <!-- End Logo -->
+
+      <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+          <li class="nav-item d-block d-lg-none">
+            <a class="nav-link nav-icon search-bar-toggle" href="#"><i class="bi bi-search"></i></a>
+          </li>
+          <!-- End Search Icon -->
+
+          <li class="nav-item dropdown">
+
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-bell"></i>
+              <span class="badge bg-primary badge-number">{{nm}}</span>
+            </a><!-- End Notification Icon -->
+  
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+              <li class="dropdown-header">
+                You have   {{nm}} write messages
+                <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              {% for element in mess %}
+              <li class="notification-item">
+
+                <div>
+                  <h4>by {{element.Emeteur}}</h4>
+                  <p>{{element.Text}}</p>
+                  <p>30 min. ago</p>
+                </div>
+              </li>
+  
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              {% endfor %}
+              <li class="dropdown-footer">
+                <a href="#">Show all write message</a>
+              </li>
+  
+            </ul><!-- End Notification Dropdown Items -->
+  
+          </li><!-- End Notification Nav -->
+  
+          <li class="nav-item dropdown">
+  
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-chat-left-text"></i>
+              <span class="badge bg-success badge-number">{{ns}}</span>
+            </a><!-- End Messages Icon -->
+  
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+              <li class="dropdown-header">
+                You have write {{ns}} messages
+                <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              {% for element in send %}
+              <li class="message-item">
+                <a href="#">
+                  <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                  <div>
+                    <h4> to {{element.Recepteur}}</h4>
+                    <p>{{element.Text}}</p>
+                    <p>4 hrs. ago</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              {% endfor %}
+              <li class="dropdown-footer">
+                <a href="#">Show all messages</a>
+              </li>
+            </ul>
+            <!-- End Messages Dropdown Items -->
+          </li>
+          <!-- End Messages Nav -->
+
+          <li class="nav-item dropdown pe-3">
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <img src="{% static 'assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle" />
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{ etudiant.Nom }}</span>
+            </a><!-- End Profile Iamge Icon -->
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+              <li class="dropdown-header">
+                <h6>{{ etudiant.Nom }}</h6>
+                <span>{{ etudiant.Matricule }}</span>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'student_user_profil' %}">
+                  <i class="bi bi-person"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'logout_view' %}">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            </ul>
+            <!-- End Profile Dropdown Items -->
+          </li>
+          <!-- End Profile Nav -->
+        </ul>
+      </nav>
+      <!-- End Icons Navigation -->
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <i class="bi bi-pencil"></i>
+            <span>Requests</span>
+          </a>
+        </li>
+        <!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <i class="bi bi-file-text"></i>
+            <span>Notes</span>
+          </a>
+        </li>
+        <!-- End Profile Page Nav -->
+      </ul>
+    </aside>
+    <!-- End Sidebar -->
+
+    <main id="main" class="main">
+      <section class="section note">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Check your notes</h5>
+
+                <!-- Table with stripped rows -->
+                <table  id='letableau' class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>UE</th>
+                      <th>Credit</th>
+                      <th>CC</th>
+                      <th>TP</th>
+                      <th>SN</th>
+                      <th>Final</th>
+                    </tr>
+                  </thead>
+                  <tbody class="testclass">
+                    {% for ue, note in notes.items %}
+                      <tr>
+                        <td>{{ ue.Code_ue.Code_ue }}</td>
+                        <td>{{ ue.Code_ue.Credit }}</td>
+                        {% for elt in note %}
+
+                           <td>{{ elt }}</td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <form method="POST" action="{% url 'mainstudent'%}">
+                  {% csrf_token %}
+                   <div class="row mb-3">
+                  <legend>Choix UE</legend>
+                  <div class="col-12">
+                    {% for nu, ue in li.items %}
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="{{ nu }}" name="checkue" value="{{ ue.Code_ue }}"  />
+                        <label class="form-check-label" for="{{ nu }}">{{ ue.Code_ue }}</label>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  
+                </div>
+                  <div class="col-12">
+                    <label for="yourUsername" class="form-label">ecrire a l'enseignant de l'ue selectionnee</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend" style="background: blue;">message</span>
+                      <input type="text" name="message" class="form-control" id="yourUsername" >
+                      <div class="invalid-feedback">Please enter your username.</div>
+                    </div>
+                    <button  class="btn btn-primary w-100" >envoyer</button>
+                </div>
+                    </div>
+                  
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100"  type="submit">voir le Dashboard</button>
+                    </div>
+    
+              </form>
+               
+                
+                <!-- End Table with stripped rows -->
+                <!-- Radial Bar Chart -->
+                <div>
+                  {{ bar|safe }}
+              </div>
+                <div id="radialBarChart"></div>
+
+                <script>
+
+
+                 var  h={{h}};
+                  var  b={{k|safe}};
+
+   
+                  for(var i = 0; i < b.length; i++)
+                  {
+                    for(var j = 0; j < b[i].length; j++)
+                    {
+                      if(b[i][j]== "Not available")
+                      {
+                        b[i][j]=0
+                      }
+                    }
+
+                  }
+                
+                  
+                 for(var i = 0; i < b.length; i++)
+                  {
+                    
+                    b[i][0] = (b[i][0] * 10) / 2;
+                    b[i][1] = (b[i][1] * 10) / 3;
+                    b[i][2] = (b[i][2] * 10) / 5;
+                  }
+
+   
+                 document.addEventListener("DOMContentLoaded", () => {
+                   new ApexCharts(document.querySelector("#radialBarChart"), {
+                     series:b[h],
+                     chart: {
+                       height: 350,
+                       type: 'radialBar',
+                       toolbar: {
+                         show: true
+                       }
+                     },
+                     plotOptions: {
+                       radialBar: {
+                         dataLabels: {
+                           name: {
+                             fontSize: '22px',
+                           },
+                           value: {
+                             fontSize: '16px',
+                           },
+                           total: {
+                             show: true,
+                             label: 'Total',
+                             formatter: function(w) {
+                               // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                               return b[h][3]
+                             }
+                           }
+                         }
+                       }
+                     },
+                     labels: ['CC', 'TP', 'SN', 'TOTAL'],
+                   }).render();
+                 }); 
+
+
+                
+               
+               </script>
+                <!-- End Radial Bar Chart -->
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+      
+
+      <section class="section">
+        
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Check your requests</h5>
+                
+
+                <!-- Default Accordion -->
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div class="space">
+                          Query1 <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Success</span>
+                        </div>
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="space">
+                          Query2 <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> rejected</span>
+                        </div>
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="space">
+                          Query2 <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> rejected</span>
+                        </div>
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="space">
+                          Query2 <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> rejected</span>
+                        </div>
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <div class="space">
+                          Query3 <span class="badge bg-info text-dark"><i class="bi bi-info-circle me-1"></i> being processed</span>
+                        </div>
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Default Accordion Example -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>AtSchool</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--  All the links in the footer should remain intact.
+      You can delete the links only if you purchased the pro version.
+      Licensing information: https://bootstrapmade.com/license/
+      Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>  -->
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+    <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+    <!-- <script {% static '' %}src="assets/vendor/simple-datatables/simple-datatables.js"></script> -->
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'test.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+# Fichiers générés automatiquement
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+
+# Répertoires de fichiers média générés
+media/
+
+# Répertoires virtuels
+venv/
+.venv/
+
+# Fichiers de configuration locaux
+.env
+local_settings.py
+
+# Fichiers de logs
+*.log
+
+# Fichiers de dépendances Python
+requirements.txt
+
+# Fichiers de cache et de compilation Django
+__pycache__/
+*.pyc
+
+# Fichiers de configuration spécifiques à l'IDE
+.vscode/
+.idea/
+
+# Fichiers de sauvegarde automatique
+*~
