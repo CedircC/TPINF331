@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="{% static 'https://cdn.jsdelivr.net/npm/apexcharts' %}"></script>
 
-    <title>student Working</title>
+    <title>Student Working</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
     <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js' %}"></script>
@@ -130,7 +130,7 @@
 
           <li class="nav-item dropdown pe-3">
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-              <img src="{% static 'assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle" />
+              <img src="{{etudiant.Profil.url}}" alt="Profile" class="rounded-circle" />
               <span class="d-none d-md-block dropdown-toggle ps-2">{{ etudiant.Nom }}</span>
             </a><!-- End Profile Iamge Icon -->
 
@@ -171,13 +171,6 @@
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#">
-            <i class="bi bi-pencil"></i>
-            <span>Requests</span>
-          </a>
-        </li>
-        <!-- End Dashboard Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="#">
@@ -336,128 +329,28 @@
         </div>
         
       </section>
-      
-
-      <section class="section">
-        
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Check your requests</h5>
-                
-
-                <!-- Default Accordion -->
-                <div class="accordion" id="accordionExample">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <div class="space">
-                          Query1 <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Success</span>
-                        </div>
-                      </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <div class="space">
-                          Query2 <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> rejected</span>
-                        </div>
-                      </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <div class="space">
-                          Query2 <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> rejected</span>
-                        </div>
-                      </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <div class="space">
-                          Query2 <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> rejected</span>
-                        </div>
-                      </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <div class="space">
-                          Query3 <span class="badge bg-info text-dark"><i class="bi bi-info-circle me-1"></i> being processed</span>
-                        </div>
-                      </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Default Accordion Example -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  
     </main>
-    <!-- End #main -->
 
-    <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
       <div class="copyright">
         &copy; Copyright <strong><span>AtSchool</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!--  All the links in the footer should remain intact.
-      You can delete the links only if you purchased the pro version.
-      Licensing information: https://bootstrapmade.com/license/
-      Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>  -->
+
       </div>
     </footer>
-    <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
     <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
     <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
     <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
     <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
-    <!-- <script {% static '' %}src="assets/vendor/simple-datatables/simple-datatables.js"></script> -->
     <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
-    <!-- Template Main JS File -->
     <script src="{% static 'assets/js/main.js' %}"></script>
-    <script src="{% static 'test.js' %}"></script>
   </body>
 </html>

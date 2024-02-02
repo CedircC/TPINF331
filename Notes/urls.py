@@ -14,4 +14,5 @@ urlpatterns = [
     path('click_ue', views.click_ue, name='click_ue'),
     path('choisir_ec', views.choisir_ec, name='choisir_ec'),
     path('student_user_profil', views.student_user_profil, name='student_user_profil'),
+    path('teacher_user_profil', views.teacher_user_profil, name='teacher_user_profil'),
 ]

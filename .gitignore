@@ -5,7 +5,7 @@ __pycache__/
 *.pyo
 
 # Répertoires de fichiers média générés
-media/
+medias/
 
 # Répertoires virtuels
 venv/

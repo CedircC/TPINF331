@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from Notes.models import Semestres, Niveau, UE, Etudiant, Enseignant, Evaluation, EC, Choisir, Choisir_EC,Message
+from django.core.files.storage import default_storage
+from Notes.models import *
 import plotly.graph_objects as go
-from django.shortcuts import render
-from django.shortcuts import render
 import plotly.io as pio
 import pdfkit
 from django.conf import settings
@@ -221,8 +220,14 @@ def mainteacher(request, code):
     df=a
     gra[3]=gra[0]+gra[1]+gra[2]
     for i in range(len(gra)-1):
-        gra[i]=(gra[i]/len(a))*100
-    gra[3]=(gra[3])/(3*len(a))*100  
+        if len(a) == 0:
+            gra[i] = (gra[i] / 1) * 100
+        else:
+            gra[i] = (gra[i] / len(a)) * 100
+    if len(a) == 0:        
+        gra[3] = (gra[3]) / (3 * 1) * 100  
+    else:
+        gra[3] = (gra[3]) / (3 * len(a)) * 100
     
       
         
@@ -591,10 +596,10 @@ def mainstudent(request):
                     h=j
             for elmr in ec:
                     listc=(Choisir_EC.objects.filter(EC_Choisit=elmr))
-            if len(listc)!=0:
-                if message!='':
-                    no = Message.objects.create(Emeteur=etudiant.Email,Recepteur=listc[0].Enseignant.Email,Text=message)
-                    no.save()  
+                    if len(listc)!=0:
+                        if message!='':
+                            no = Message.objects.create(Emeteur=etudiant.Email,Recepteur=listc[0].Enseignant.Email,Text=message)
+                            no.save()  
     mess= Message.objects.filter(Recepteur=etudiant.Email)
     send= Message.objects.filter(Emeteur=etudiant.Email) 
     nm=len(mess)
@@ -651,6 +656,15 @@ def student_user_profil(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
 
+        profil = request.FILES.get('profil')
+
+        if profil:    
+            file_path = f"profil/{profil.name}"
+            default_storage.save(file_path, profil)
+
+            etudiant.Profil = file_path
+            etudiant.save()
+
         etudiant.Nom = name
         etudiant.Email = email
         etudiant.save()
@@ -660,4 +674,33 @@ def student_user_profil(request):
     contexte = {
         'etudiant': etudiant,
     }
+
     return render(request, 'student_user_profil.html', contexte)
+
+def teacher_user_profil(request):
+    enseignant = Enseignant.objects.get(IdEnseignant = request.session.get('Idenseignant'))
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+
+        profil = request.FILES.get('profil')
+
+        if profil:    
+            file_path = f"profil/{profil.name}"
+            default_storage.save(file_path, profil)
+
+            enseignant.Profil = file_path
+            enseignant.save()
+
+        enseignant.Nom = name
+        enseignant.Email = email
+        enseignant.Numtel = phone
+        enseignant.save()
+
+    contexte = {
+        'enseignant': enseignant,
+    }
+
+    return render(request, 'teacher_user_profil.html', contexte)

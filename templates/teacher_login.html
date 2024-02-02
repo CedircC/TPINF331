@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Login Teacher</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,6 +32,19 @@
 </head>
 
 <body>
+
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="" class="logo d-flex align-items-center">
+        <img src="{% static 'assets/img/logo.png' %}" alt="" />
+        <span class="d-none d-lg-block">AtSchool</span>
+      </a>
+
+      <a href="{% url 'choose_account' %}"><i class="bi bi-arrow-left-circle toggle-sidebar-btn"></i></a>
+    </div>
+
+  </header>
 
   <main>
     <div class="container">

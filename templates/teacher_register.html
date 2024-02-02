@@ -24,75 +24,98 @@
 
     <!-- Template Main CSS File -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-    <title>Register</title>
+    <title>Register Teacher</title>
     
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Teacher Registration</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
-                </div>
 
-              <!-- Floating Labels Form -->
-              <form class="row g-3" method="POST" action="{% url 'teacher'%}">
-                {% csrf_token %}
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingName" placeholder="Your Name" name="nom">
-                    <label for="floatingName">Your Name</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                      <input type="tel" name="phone" class="form-control" id="floatingName" placeholder="Your Phone">
-                      <label for="floatingName">Phone</label>
-                    </div>
-                  </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingEmail" placeholder="Your Email" name="email">
-                    <label for="floatingEmail">Your Email</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-                    <label for="floatingPassword">Password</label>
-                  </div>
-                </div>
-                <div class="col-mb-6">
-                    <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                    <div class="col-sm-10">
-                      <input type="date" class="form-control" name="date">
-                    </div>
-                </div>
-                
-                    <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-                    <div class="col-md-4">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genre" id="gridRadios1" value="homme" checked>
-                        <label class="form-check-label" for="gridRadios1">
-                          Male
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="genre" id="gridRadios2" value="femme">
-                        <label class="form-check-label" for="gridRadios2">
-                          Female
-                        </label>
-                      </div>
-                    </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form><!-- End floating Labels Form -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
-            </div>
-        </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="" class="logo d-flex align-items-center">
+        <img src="{% static 'assets/img/logo.png' %}" alt="" />
+        <span class="d-none d-lg-block">AtSchool</span>
+      </a>
 
+      <a href="{% url 'choose_account' %}"><i class="bi bi-arrow-left-circle toggle-sidebar-btn"></i></a>
     </div>
+
+  </header>
+
+  <main style="margin-top: 100px;">
+    <div class="container">
+      <div class="card">
+          <div class="card-body">
+              <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">Teacher Registration</h5>
+                  <p class="text-center small">Enter your personal details to create account</p>
+              </div>
+
+            <!-- Floating Labels Form -->
+            <form class="row g-3" method="POST" action="{% url 'teacher'%}">
+              {% csrf_token %}
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingName" placeholder="Your Name" name="nom">
+                  <label for="floatingName">Your Name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="tel" name="phone" class="form-control" id="floatingName" placeholder="Your Phone">
+                    <label for="floatingName">Phone</label>
+                  </div>
+                </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="floatingEmail" placeholder="Your Email" name="email">
+                  <label for="floatingEmail">Your Email</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                  <label for="floatingPassword">Password</label>
+                </div>
+              </div>
+              <div class="col-mb-6">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" name="date">
+                  </div>
+              </div>
+              
+                  <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                  <div class="col-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="genre" id="gridRadios1" value="homme" checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Male
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="genre" id="gridRadios2" value="femme">
+                      <label class="form-check-label" for="gridRadios2">
+                        Female
+                      </label>
+                    </div>
+                  </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+              <div class="col-12">
+                <p class="small mb-0">Already have account? <a
+                    href="{% url 'login_teacher' %}">Login</a></p>
+              </div>
+
+            </form><!-- End floating Labels Form -->
+
+          </div>
+      </div>
+
+  </div>
+  </main>
+    
 </body>
 </html>

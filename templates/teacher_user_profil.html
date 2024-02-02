@@ -6,10 +6,11 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Student Profile</title>
+  <title>Teacher Profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <!-- Favicons -->
   <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
@@ -55,13 +56,13 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{etudiant.Profil.url}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{etudiant.Nom}}</span>
+            <img src="{{enseignant.Profil.url}}" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{enseignant.Nom}}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>{{etudiant.Nom}}</h6>
+              <h6>{{enseignant.Nom}}</h6>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -84,13 +85,13 @@
               </a>
             </li>
 
-          </ul>
-        </li>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
 
       </ul>
-    </nav>
+    </nav><!-- End Icons Navigation -->
 
-  </header>
+  </header><!-- End Header -->
 
   <main id="main" class="main">
 
@@ -98,12 +99,12 @@
       <h1>Profile</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'mainstudent' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'click_ue' %}">Home</a></li>
           <li class="breadcrumb-item">Users</li>
           <li class="breadcrumb-item active">Profile</li>
         </ol>
       </nav>
-    </div>
+    </div><!-- End Page Title -->
 
     <section class="section profile">
       <div class="row">
@@ -112,8 +113,8 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="{{etudiant.Profil.url}}" alt="Profile" class="rounded-circle">
-              <h2>{{etudiant.Nom}}</h2>
+              <img src="{{enseignant.Profil.url}}" alt="Profile" class="rounded-circle">
+              <h2>{{enseignant.Nom}}</h2>
             </div>
           </div>
 
@@ -143,22 +144,17 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Name</div>
-                    <div class="col-lg-9 col-md-8">{{etudiant.Nom}}</div>
+                    <div class="col-lg-9 col-md-8">{{enseignant.Nom}}</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Matricule</div>
-                    <div class="col-lg-9 col-md-8">{{etudiant.Matricule}}</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Niveau</div>
-                    <div class="col-lg-9 col-md-8">{{etudiant.Niveau_etu.Niv}}</div>
+                    <div class="col-lg-3 col-md-4 label">Phone</div>
+                    <div class="col-lg-9 col-md-8">{{enseignant.Numtel}}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">{{etudiant.Email}}</div>
+                    <div class="col-lg-9 col-md-8">{{enseignant.Email}}</div>
                   </div>
 
                 </div>
@@ -166,12 +162,12 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form method="POST" action="{% url 'student_user_profil' %}">
+                  <form method="POST" action="{% url 'teacher_user_profil' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="{{etudiant.Profil.url}}" alt="Profile">
+                        <img src="{{enseignant.Profil.url}}" alt="Profile">
                         <div class="pt-2">
                             <input type="file" name="profil" id="profil">
                         </div>
@@ -181,15 +177,22 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="name" type="text" class="form-control" id="fullName" value="{{etudiant.Nom}}">
+                        <input name="name" type="text" class="form-control" id="fullName" value="{{enseignant.Nom}}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="{{etudiant.Email}}">
+                        <input name="email" type="email" class="form-control" id="Email" value="{{enseignant.Email}}">
                       </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                        <div class="col-md-8 col-lg-9">
+                          <input name="phone" type="tel" class="form-control" id="Phone" value="{{enseignant.Numtel}}">
+                        </div>
                     </div>
 
                     <div class="text-center">
