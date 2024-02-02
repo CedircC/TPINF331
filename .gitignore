@@ -31,3 +31,6 @@ __pycache__/
 
 # Fichiers de sauvegarde automatique
 *~
+
+#Fichiers pdf de tests
+*.pdf

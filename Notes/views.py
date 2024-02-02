@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.core.files.storage import default_storage
 from Notes.models import *
+from pathlib import Path
 import plotly.graph_objects as go
 import plotly.io as pio
 import pdfkit
@@ -367,8 +368,25 @@ def mainteacher(request, code):
     # Convertir le graphique en HTML
     graph_html4 = fig.to_html(full_html=False)
 
-    project_directory = settings.BASE_DIR
-    pdf_path = os.path.join(project_directory, 'rapport'+code+'.pdf')
+
+    def get_download_folder():
+        # Obtenez le chemin du dossier de téléchargement pour différents systèmes d'exploitation
+        if os.name == 'posix':  # Linux, macOS
+            dowload_path = Path.home() / 'Downloads'
+        elif os.name == 'nt':  # Windows
+            dowload_path = Path.home() / 'Downloads'
+        elif os.name == 'mac':  # macOS
+            dowload_path = Path.home() / 'Downloads'
+
+        if not os.path.exists(dowload_path):
+            os.makedirs(dowload_path)
+
+        return dowload_path
+
+    # Utilisation de la fonction pour obtenir le chemin du dossier de téléchargement
+    download_path = get_download_folder()
+
+    pdf_path = os.path.join(download_path, 'rapport'+code+'.pdf')
 
     table_html = ' <table id="letableau" class="table datatable"  ><thead><tr><th><b>N</b>ame</th><th>Matricule</th><th>CC</th><th>TP</th><th>SN</th><th></th></tr></thead><tbody>'
     for element,n in notes.items():
@@ -446,13 +464,10 @@ def mainteacher(request, code):
     html_concatene = ''
 # Convertir chaque graphe HTML en PDF et les ajouter au fichier de sortie
     for index, graphe_html in enumerate(graphes_html):
-        html_concatene += graphe_html
+        html_concatene += graphe_html     
 
-#     config = pdfkit.configuration(wkhtmltopdf='/home/cedirc/Bureau/.venv/lib/python3.10/site-packages/wkhtmltopdf')
-#     pdfkit.from_url('http://example.com', 'out.pdf', configuration=config)        
-
-# # Générer le fichier PDF à partir du contenu HTML concaténé
-#     pdfkit.from_string(html_concatene, pdf_path, options={'page-size': 'A4'}) 
+# Générer le fichier PDF à partir du contenu HTML concaténé
+    pdfkit.from_string(html_concatene, pdf_path, options={'page-size': 'A4'}) 
     ess=Enseignant.objects.get(IdEnseignant = request.session.get('Idenseignant'))
     if request.method == 'POST':
             message = request.POST.get("message")
@@ -635,7 +650,7 @@ def click_ue(request):
     
     for elt in listechoix:
         listeue.append(elt.EC_Choisit.Code_ue)
-    # print(listechoix)
+
     nl=[]
     for item in  listeue:
         if item not in  nl:
